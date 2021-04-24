@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,800;1,600&display=swap");
+@font-face {
+  font-family: 'Avalon';
+  src: url("../../fonts/FontsFree-Net-Avalon.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'Shentox';
+  src: url("../../fonts/FontsFree-Net-Shentox1.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'ARS Maquette';
+  src: url("../../fonts/ARSMaquettePro-Light.woff") format("truetype");
+}
+/*# sourceMappingURL=font.css.map */

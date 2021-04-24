@@ -1,0 +1,810 @@
+@import './scss/colors';
+@import './scss/font';
+@import './scss/typography';
+@import './scss/mixins';
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+// --------------- HEADER ---------------
+.header {
+	padding: 0.25em 1em;
+	background-color: rgba(255, 255, 255, 1);
+	display: flex;
+	justify-content: space-between;
+	font-size: 1.5rem;
+	box-shadow: 0 8px 15px -10px #aaaaaa;
+
+	.menu-bar {
+		display: none;
+	}
+
+	h3 {
+		margin: 0;
+		font-family: $Sanserif;
+		font-weight: 900;
+		transition: 0.5s ease-in;
+		cursor: pointer;
+
+		&:hover {
+			color: $pink--200;
+		}
+	}
+
+	&__list {
+		margin: 0;
+		padding: 0;
+		align-self: center;
+
+		&--item {
+			display: inline-block;
+
+			.link {
+				padding: 0 1em;
+				color: $grey--400;
+				text-decoration: none;
+				font-family: $Sanserif;
+				font-size: 1.25rem;
+				transition: 0.25s ease-in-out;
+
+				&:hover {
+					color: $grey--300;
+				}
+			}
+		}
+	}
+
+	i {
+		align-self: center;
+		color: $grey--300;
+		cursor: pointer;
+		transition: 0.5s ease;
+
+		&:hover {
+			color: $pink--200;
+			transform: translateY(-10px);
+		}
+	}
+
+	@include for-iphone-only {
+		width: 100%;
+
+		.menu-bar {
+			display: block;
+			padding-right: 0.5em;
+		}
+
+		h3 {
+			align-self: center;
+		}
+
+		&__list {
+			display: none;
+			flex-direction: column;
+			flex-basis: 100%;
+
+			background-color: $grey--100;
+			min-width: 100%;
+			padding: 0.5em;
+
+			position: absolute;
+			top: 2.15em;
+			left: 0;
+
+			z-index: 1;
+
+			.item {
+				.link {
+					transition: 0.25s ease-in-out;
+
+					&:hover {
+						color: $grey--300;
+					}
+				}
+			}
+		}
+
+		.appear {
+			display: flex;
+		}
+	}
+}
+
+// --------------- pageWrapper ---------------
+.container {
+	margin: 0.5em 2em;
+}
+
+.pageWrapper {
+	height: 100vh;
+	margin-bottom: 5em;
+	display: grid;
+	grid-template-columns: 20% repeat(3, 1fr);
+	grid-template-rows: repeat(3, 1fr) 25%;
+	grid-template-areas:
+		'split split split split'
+		'image1 image1 image2 image3'
+		'image1 image1 image5 image5'
+		'image4 image4 image5 image5';
+	grid-gap: 0.5em;
+
+	.split {
+		grid-area: split;
+
+		display: flex;
+		justify-content: space-evenly;
+		align-items: center;
+		font-family: $Sanserif;
+
+		&__title {
+			margin: 0;
+			font-size: 5rem;
+			font-weight: 900;
+			cursor: pointer;
+		}
+
+		&__subTitle {
+			font-size: 2.5rem;
+		}
+	}
+
+	& > * {
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		opacity: 0.9;
+
+		&:not(:first-child) {
+			color: #f5f5f5;
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-end;
+			line-height: 1;
+
+			.header {
+				background: none;
+				box-shadow: none;
+				margin: 0;
+				padding: 0 1em;
+				font-family: $Helvetica;
+			}
+
+			.content {
+				margin: 0;
+				padding: 0 1em 0.25em;
+				font-family: $Opensans;
+				font-size: 2rem;
+			}
+		}
+	}
+
+	.image--1 {
+		grid-area: image1;
+		background-image: url('../image/bg1.jpg');
+	}
+
+	.image--2 {
+		grid-area: image2;
+		background-image: url('../image/bg4.jpg');
+	}
+
+	.image--3 {
+		grid-area: image3;
+		background-image: url('../image/bg3.jpg');
+	}
+
+	.image--4 {
+		grid-area: image4;
+		background-image: url('../image/bg2.jpg');
+
+		.info {
+			display: flex;
+			flex-direction: column;
+			margin-bottom: 1.5em;
+			.text-center {
+				text-align: center;
+			}
+
+			.btn {
+				align-self: center;
+				padding: 0.5em 1.5em;
+				border-radius: 20px;
+				border: 1px solid #fff;
+				color: #fff;
+				background-color: transparent;
+				font-size: 1rem;
+				text-transform: uppercase;
+				cursor: pointer;
+			}
+		}
+	}
+
+	.image--5 {
+		grid-area: image5;
+		background-image: url('../image/bg3.jpg');
+	}
+
+	@include for-iphone-only {
+		display: block;
+		margin-bottom: 30em;
+
+		& > * {
+			width: 100%;
+			margin-bottom: 1em;
+		}
+
+		.split {
+			display: block;
+			text-align: center;
+			z-index: -1;
+		}
+
+		.image--5 {
+			order: 1;
+		}
+
+		.image--4 {
+			order: 2;
+		}
+	}
+}
+
+// --------------- ASIDE ---------------
+.article {
+	height: 30%;
+	padding: 1em 2.5em;
+	background-color: #f7f8f8;
+	display: flex;
+	flex-direction: column;
+
+	&__title {
+		font-family: $Opensans;
+		color: $grey--400;
+		letter-spacing: 1px;
+		text-align: center;
+	}
+
+	&__info {
+		padding: 0 2em;
+		display: flex;
+
+		&--split {
+			display: flex;
+			margin: 1em 0;
+
+			h2 {
+				align-self: flex-start;
+				margin: 0 0.2em 0 0;
+				color: $pink--200;
+				font-size: 2rem;
+			}
+
+			p {
+				margin: 0;
+				min-width: 50%;
+				color: #000;
+				font-size: 0.9rem;
+				font-family: $Opensans;
+				font-weight: 600;
+
+				&:hover {
+					text-decoration: underline;
+					text-decoration-color: $pink--200;
+				}
+			}
+		}
+	}
+
+	@include for-iphone-only {
+		display: block;
+
+		&__info {
+			display: block;
+
+			&--spit {
+				p {
+					align-self: flex-end;
+				}
+			}
+		}
+	}
+}
+
+// --------------- Stories ---------------
+.stories {
+	margin: 4em 8em;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: 10% repeat(2, 1fr) 5%;
+	grid-template-areas:
+		'title title title title'
+		'card1 card2 card3 card4'
+		'card5 card6 card7 card8'
+		'button button button button';
+	grid-gap: 1em;
+
+	&__title {
+		grid-area: title;
+		font-family: $Sanserif;
+		font-weight: 900;
+	}
+	.card {
+		&__info {
+			&--para {
+				font-size: 1.2rem;
+				font-family: $Opensans;
+				font-weight: 500;
+			}
+
+			&--sub {
+				color: $grey--300;
+			}
+		}
+	}
+	.button {
+		grid-area: button;
+		margin: 0 40em;
+		background-color: transparent;
+		color: #aaaaaa;
+		border-radius: 20px;
+		border-color: $grey--200;
+		text-transform: uppercase;
+		transition: 0.5s ease;
+		cursor: pointer;
+
+		&:hover {
+			border-color: $grey--400;
+			color: $grey--400;
+
+			i {
+				transform: translateX(5px);
+				transition: 0.5s ease-in-out;
+			}
+		}
+	}
+	.card1 {
+		grid-area: card1;
+	}
+	.card2 {
+		grid-area: card2;
+	}
+	.card3 {
+		grid-area: card3;
+	}
+	.card4 {
+		grid-area: card4;
+	}
+	.card5 {
+		grid-area: card5;
+	}
+	.card6 {
+		grid-area: card6;
+	}
+	.card7 {
+		grid-area: card7;
+	}
+	.card8 {
+		grid-area: card8;
+	}
+
+	@include for-iphone-only {
+		grid-template-columns: 1fr;
+		grid-template-rows: 5% repeat(8, 1fr) 5%;
+		grid-template-areas:
+			'title'
+			'card1'
+			'card2'
+			'card3'
+			'card4'
+			'card5'
+			'card6'
+			'card7'
+			'card8'
+			'button';
+		margin: 2em 2em;
+		&__title {
+			grid-area: title;
+		}
+		.card1 {
+			grid-area: card1;
+		}
+		.card2 {
+			grid-area: card2;
+		}
+		.card3 {
+			grid-area: card3;
+		}
+		.card4 {
+			grid-area: card4;
+		}
+		.card5 {
+			grid-area: card5;
+		}
+		.card6 {
+			grid-area: card6;
+		}
+		.card7 {
+			grid-area: card7;
+		}
+		.card8 {
+			grid-area: card8;
+		}
+		.button {
+			grid-area: button;
+			margin: 3.8em 5.5em;
+			color: #000;
+			border-color: #000;
+		}
+	}
+}
+
+// --------------- Cta ---------------
+.container__cta {
+	background-image: url('https://images.unsplash.com/photo-1506886908870-1e5c3e685b3d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1190&q=80');
+	background-size: cover;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	padding: 1em 4em;
+	text-align: center;
+	color: #f5f5f5;
+
+	.cta {
+		display: flow-root;
+		font-family: $Opensans;
+		margin: 0;
+
+		& > * {
+			margin: 0.5em 0;
+		}
+
+		&__title {
+			font-weight: 900;
+			font-size: 2.5rem;
+
+			@include for-iphone-only {
+				font-size: 1.5rem;
+			}
+		}
+
+		&__about {
+			font-size: 1.1rem;
+		}
+
+		&__form {
+			position: relative;
+
+			&--text {
+				padding: 0.5em 0 0.5em 1em;
+				border-radius: 5px;
+				border: none;
+				width: 35em;
+				font-size: 1.5rem;
+
+				@include for-iphone-only {
+					margin: 0;
+					width: 13.5em;
+				}
+			}
+
+			&--btn {
+				background-color: transparent;
+				border: none;
+				position: absolute;
+				top: 0.5em;
+				right: 11.5em;
+				font-size: 1.5rem;
+				cursor: pointer;
+
+				@include for-iphone-only {
+					color: #bbbbbb;
+					position: absolute;
+					right: 0;
+				}
+			}
+
+			@include for-iphone-only {
+				margin: 0;
+			}
+		}
+
+		&__icons {
+			font-size: 1.8rem;
+
+			i {
+				padding: 0 0.2em;
+				color: rgba(236, 236, 236, 0.5);
+				cursor: pointer;
+				transition: 0.2s ease-in;
+
+				&:hover {
+					color: honeydew;
+				}
+			}
+		}
+	}
+}
+
+// --------------- Careers ---------------
+.careers {
+	padding: 3.5em 8em;
+	margin-bottom: 1em;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: 1fr 10%;
+	grid-template-areas:
+		'goals kinds'
+		'patners patners';
+	grid-gap: 1em;
+
+	.goals {
+		grid-area: goals;
+
+		&__header {
+			font-family: $Sanserif;
+
+			& > * {
+				margin: 0;
+			}
+
+			&--subtitle {
+				font-size: 1rem;
+				font-weight: 200;
+			}
+		}
+
+		&__para {
+			max-width: 35em;
+			font-family: $Opensans;
+			font-size: 1.1rem;
+		}
+
+		&__footer {
+			margin-top: 1.5em;
+
+			&--btn {
+				padding: 1em 2em;
+				border-radius: 4px;
+				border: none;
+				background-color: rgb(0, 204, 204);
+				color: #fff;
+				text-transform: uppercase;
+				transition: 0.2s ease-in;
+				cursor: pointer;
+
+				&:hover {
+					background-color: rgba(0, 204, 204, 0.5);
+				}
+			}
+		}
+	}
+
+	.kinds {
+		grid-area: kinds;
+		max-width: 35em;
+		display: flex;
+		flex-flow: wrap row;
+
+		&__item {
+			display: flex;
+			align-items: center;
+			flex-direction: row;
+			flex-basis: 100%;
+			flex: 1;
+
+			img {
+				width: 6.5em;
+				height: 6.5em;
+			}
+
+			h2 {
+				margin-left: 1.5em;
+			}
+		}
+	}
+	.patners {
+		grid-area: patners;
+		display: flex;
+		justify-content: space-evenly;
+
+		a {
+			transition: 0.5s ease-in-out;
+
+			&:hover {
+				opacity: 0.4;
+			}
+
+			img {
+				width: 8em;
+				height: 6em;
+			}
+		}
+	}
+
+	@include for-iphone-only {
+		padding: 1em 2em;
+		margin-bottom: 80em;
+		height: 2em;
+		grid-template-columns: 1fr;
+		grid-template-rows: repeat(3, 1fr);
+		grid-template-areas:
+			'goals '
+			'kinds'
+			'patners';
+
+		.goals {
+			grid-area: goals;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.kinds {
+			grid-area: kinds;
+			padding: 2em;
+			display: flex;
+			flex-flow: nowrap column;
+			align-items: center;
+		}
+
+		.patners {
+			grid-area: patners;
+			display: flex;
+			flex-flow: wrap row;
+
+			a {
+				flex-grow: 4;
+				flex-basis: 50%;
+				text-align: center;
+			}
+		}
+	}
+}
+
+// --------------- FOOTER ---------------
+.footer {
+	padding: 2em 8em;
+	background-color: #000;
+	color: #fff;
+	display: grid;
+	grid-template-columns: 2fr repeat(2, 1fr);
+	grid-template-rows: 1fr 20%;
+	grid-template-areas:
+		'logo more about'
+		'copyright copyright copyright';
+
+	&__logo {
+		grid-area: logo;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+
+		&--title {
+			font-family: $Opensans;
+
+			h1 {
+				margin: 0;
+				font-size: 3.5rem;
+			}
+
+			h3 {
+				margin: 0;
+				font-size: 1.25rem;
+				font-weight: 400;
+			}
+		}
+
+		&--icons {
+			font-size: 1.5rem;
+
+			i {
+				color: rgba(236, 236, 236, 0.5);
+				cursor: pointer;
+				transition: 0.2s ease-in;
+
+				&:hover {
+					color: honeydew;
+				}
+
+				&:not(:last-child) {
+					padding-right: 0.5em;
+				}
+			}
+		}
+	}
+
+	&__more,
+	&__about {
+		h2 {
+			font-family: $Sanserif;
+			font-size: 1rem;
+			letter-spacing: -1px;
+		}
+
+		.footer__list {
+			list-style: none;
+			padding: 0;
+
+			&--item {
+				padding-bottom: 0.2em;
+
+				.link {
+					color: rgb(0, 204, 204);
+					font-family: $Opensans;
+					text-decoration: none;
+
+					&:hover {
+						text-decoration: underline;
+					}
+				}
+			}
+		}
+	}
+
+	&__more {
+		grid-area: more;
+	}
+	&__about {
+		grid-area: about;
+	}
+	&__copyright {
+		grid-area: copyright;
+		margin-top: 1em;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		& > * {
+			margin: 0;
+			margin-bottom: 0.6em;
+			color: rgb(221, 221, 221);
+			font-family: $Opensans;
+			font-size: 0.8rem;
+
+			span {
+				color: #fff;
+				font-weight: 600;
+				transition: 0.3s ease-in;
+				cursor: pointer;
+
+				&:hover {
+					color: $pink--200;
+				}
+			}
+		}
+	}
+
+	@include for-iphone-only {
+		padding: 1em 2em;
+		width: 100%;
+		height: 100%;
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: repeat(3, 1fr);
+
+		&__logo {
+			grid-column: 1 / 4;
+			grid-row: 1 / 2;
+		}
+		&__more {
+			grid-column: 1 / 2;
+			grid-row: 2 / 3;
+		}
+		&__about {
+			grid-column: 2 / 3;
+			grid-row: 2 / 3;
+		}
+		&__copyright {
+			grid-column: 1 / 4;
+			grid-row: 3 / 4;
+			text-align: center;
+		}
+	}
+}
