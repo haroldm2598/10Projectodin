@@ -234,7 +234,7 @@ body {
 
 	@include for-iphone-only {
 		display: block;
-		margin-bottom: 30em;
+		margin-bottom: 37em;
 
 		& > * {
 			width: 100%;
@@ -509,6 +509,11 @@ body {
 					position: absolute;
 					right: 0;
 				}
+
+				@include for-iphone-six {
+					position: absolute;
+					right: 10px;
+				}
 			}
 
 			@include for-iphone-only {
@@ -530,6 +535,10 @@ body {
 				}
 			}
 		}
+	}
+
+	@include for-iphone-six {
+		padding: 0 1em;
 	}
 }
 

@@ -297,7 +297,7 @@ body {
 @media (max-width: 599px) {
   .pageWrapper {
     display: block;
-    margin-bottom: 30em;
+    margin-bottom: 37em;
   }
   .pageWrapper > * {
     width: 100%;
@@ -634,6 +634,13 @@ body {
   }
 }
 
+@media (min-width: 375px) {
+  .container__cta .cta__form--btn {
+    position: absolute;
+    right: 10px;
+  }
+}
+
 @media (max-width: 599px) {
   .container__cta .cta__form {
     margin: 0;
@@ -654,6 +661,12 @@ body {
 
 .container__cta .cta__icons i:hover {
   color: honeydew;
+}
+
+@media (min-width: 375px) {
+  .container__cta {
+    padding: 0 1em;
+  }
 }
 
 .careers {
