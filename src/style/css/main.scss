@@ -444,6 +444,10 @@ body {
 			border-color: #000;
 		}
 	}
+
+	@include for-iphone-six {
+		margin-bottom: 5em;
+	}
 }
 
 // --------------- Cta ---------------
